@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { manaFromStatus } from './mana'
+import { manaFromStatus } from './mana.ts'
 
 
 describe('manaFromStatus', () => {
