@@ -1,10 +1,11 @@
-import { useQuery } from "@tanstack/react-query";
-import { fetchAllBooks } from "../apis/books"
+import { useQuery } from '@tanstack/react-query'
+import { fetchAllBooks } from '../apis/books'
+import { Link } from 'react-router'
 
 function BooksList() {
-  const { data, isLoading, error} = useQuery({
+  const { data, isLoading, error } = useQuery({
     queryKey: ['books'],
-    queryFn: fetchAllBooks
+    queryFn: fetchAllBooks,
   })
 
   if (isLoading) return <p role="status">Loading…</p>
@@ -14,7 +15,9 @@ function BooksList() {
   return (
     <ul>
       {data.map((book) => (
-        <li key={book.id}>{book.title} — {book.author}</li>
+        <li key={book.id}>
+          <Link to={`/books/${book.id}`}>{book.title}</Link> — {book.author}
+        </li>
       ))}
     </ul>
   )
