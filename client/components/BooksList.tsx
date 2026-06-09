@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { fetchAllBooks } from '../apis/books'
-import { Link } from 'react-router'
+
+import BookCard from './BookCard'
 
 function BooksList() {
   const { data, isLoading, error } = useQuery({
@@ -13,13 +14,11 @@ function BooksList() {
   if (!data) return null
 
   return (
-    <ul>
+    <div>
       {data.map((book) => (
-        <li key={book.id}>
-          <Link to={`/books/${book.id}`}>{book.title}</Link> — {book.author}
-        </li>
+        <BookCard key={book.id} book={book} />
       ))}
-    </ul>
+    </div>
   )
 }
 
