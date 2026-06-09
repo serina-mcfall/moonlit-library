@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router'
 import BooksList from './BooksList'
 import AddBook from './AddBook'
+import BookDetail from './BookDetail'
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<BooksList />} />
           <Route path="/books/new" element={<AddBook />} />
+          <Route path="/books/:id" element={<BookDetail />} />
         </Routes>
       </main>
     </>
