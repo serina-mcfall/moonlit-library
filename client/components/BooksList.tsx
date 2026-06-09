@@ -14,7 +14,13 @@ function BooksList() {
   if (!data) return null
 
   return (
-    <div>
+    <div
+      style={{
+        display: 'grid',
+        gap: '16px',
+        gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
+      }}
+    >
       {data.map((book) => (
         <BookCard key={book.id} book={book} />
       ))}
