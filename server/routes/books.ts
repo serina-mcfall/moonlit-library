@@ -9,4 +9,4 @@ router.get('/', async (req, res) => {
 
 })
 
-export default getAll 
+export default router
