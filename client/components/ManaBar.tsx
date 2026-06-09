@@ -5,12 +5,14 @@ interface Props {
   size?: 'tile' | 'detail'
 }
 
-function ManaBar({ status, size = 'tile'}: Props) {
+function ManaBar({ status, size = 'tile' }: Props) {
   const percent = manaFromStatus(status)
   const height = size === 'detail' ? 8 : 5
-  const label = status ? `Reading progress: ${status}` : 'Reading progress: not started'
+  const label = status
+    ? `Reading progress: ${status}`
+    : 'Reading progress: not started'
 
-   return (
+  return (
     <div
       role="progressbar"
       aria-valuenow={percent}
@@ -24,21 +26,19 @@ function ManaBar({ status, size = 'tile'}: Props) {
         overflow: 'hidden',
         border: '1px solid var(--border-gold)',
       }}
-  
     >
       <div
-      style={{
-         height: '100%',
+        style={{
+          height: '100%',
           width: `${percent}%`,
-          background: 'linear-gradient(90deg, var(--gold), var(--pink), var(--cyan))',
+          background:
+            'linear-gradient(90deg, var(--gold), var(--pink), var(--cyan))',
           boxShadow: '0 0 8px rgba(245, 168, 192, 0.7)',
           transition: 'width 0.3s ease',
-      }}
+        }}
       />
     </div>
-   )
-    
-  
+  )
 }
 
 export default ManaBar

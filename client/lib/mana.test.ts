@@ -1,9 +1,8 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect } from 'vitest'
 import { manaFromStatus } from './mana.ts'
 
-
 describe('manaFromStatus', () => {
-  it ('returns 100 for not started variants', () => {
+  it('returns 100 for not started variants', () => {
     expect(manaFromStatus('not started')).toBe(100)
     expect(manaFromStatus('not_stared')).toBe(100)
     expect(manaFromStatus('untouched')).toBe(100)
@@ -39,5 +38,4 @@ describe('manaFromStatus', () => {
     expect(manaFromStatus('FINISHED')).toBe(0)
     expect(manaFromStatus('Reading')).toBe(50)
   })
-
 })

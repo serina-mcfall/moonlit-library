@@ -10,17 +10,14 @@ beforeEach(async () => {
 })
 
 describe('GET /api/v1/books', () => {
-
   it('returns 200 with the seeded books', async () => {
     const res = await request(server).get('/api/v1/books')
     expect(res.status).toBe(200)
     expect(res.body).toHaveLength(5)
   })
-
 })
 
 describe('GET /api/v1/books/:id', () => {
-
   it('returns 200 with one book for a valid id', async () => {
     const res = await request(server).get('/api/v1/books/1')
     expect(res.status).toBe(200)
@@ -36,11 +33,9 @@ describe('GET /api/v1/books/:id', () => {
     const res = await request(server).get('/api/v1/books/cat')
     expect(res.status).toBe(400)
   })
-
 })
 
 describe('POST /api/v1/books', () => {
-
   it('returns 201 with the new id', async () => {
     const res = await request(server)
       .post('/api/v1/books')
@@ -50,14 +45,14 @@ describe('POST /api/v1/books', () => {
   })
 
   it('returns 400 when title is missing', async () => {
-    const res = await request(server).post('/api/v1/books').send({ author: 'X' })
+    const res = await request(server)
+      .post('/api/v1/books')
+      .send({ author: 'X' })
     expect(res.status).toBe(400)
   })
-
 })
 
 describe('PATCH /api/v1/books/:id', () => {
-
   it('returns 200 and persists the change', async () => {
     const res = await request(server)
       .patch('/api/v1/books/1')
@@ -76,11 +71,9 @@ describe('PATCH /api/v1/books/:id', () => {
       .send({ read_status: 'finished' })
     expect(res.status).toBe(404)
   })
-
 })
 
 describe('DELETE /api/v1/books/:id', () => {
-
   it('returns 204 and removes the book', async () => {
     const res = await request(server).delete('/api/v1/books/1')
     expect(res.status).toBe(204)
@@ -94,8 +87,4 @@ describe('DELETE /api/v1/books/:id', () => {
     const res = await request(server).delete('/api/v1/books/999')
     expect(res.status).toBe(404)
   })
-
 })
-
-
-

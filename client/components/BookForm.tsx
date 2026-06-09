@@ -28,19 +28,19 @@ function BookForm({
 
   return (
     <form onSubmit={handelSubmit}>
-      {errorMessage && <p role='alert'>{errorMessage}</p>}
+      {errorMessage && <p role="alert">{errorMessage}</p>}
 
       <label>
-        Title * 
+        Title *
         <input
-        type='text'
-        required
-        aria-required='true'
-        value={form.title}
-        onChange={(e) => setForm({ ...form, title: e.target.value})}
+          type="text"
+          required
+          aria-required="true"
+          value={form.title}
+          onChange={(e) => setForm({ ...form, title: e.target.value })}
         />
       </label>
-       <label>
+      <label>
         Author
         <input
           type="text"
@@ -70,7 +70,9 @@ function BookForm({
         Read status
         <select
           value={form.read_status ?? ''}
-          onChange={(e) => setForm({ ...form, read_status: e.target.value || null })}
+          onChange={(e) =>
+            setForm({ ...form, read_status: e.target.value || null })
+          }
         >
           <option value="">— choose —</option>
           <option value="not started">Not started</option>
@@ -86,7 +88,9 @@ function BookForm({
         <input
           type="url"
           value={form.cover_image ?? ''}
-          onChange={(e) => setForm({ ...form, cover_image: e.target.value || null })}
+          onChange={(e) =>
+            setForm({ ...form, cover_image: e.target.value || null })
+          }
         />
       </label>
 
@@ -99,14 +103,11 @@ function BookForm({
         />
       </label>
 
-       <button type="submit" disabled={isPending}>
+      <button type="submit" disabled={isPending}>
         {isPending ? pendingLabel : submitLabel}
       </button>
-
     </form>
   )
-
-
 }
 
 export default BookForm

@@ -1,5 +1,4 @@
-
-import type { Book,  BookDraft } from '../../models/books'
+import type { Book, BookDraft } from '../../models/books'
 import db from './connection.ts'
 
 export async function add(book: BookDraft): Promise<number> {
@@ -17,7 +16,10 @@ export function getById(id: number): Promise<Book | undefined> {
   return db('books').where({ id }).first()
 }
 
-export function update(id: number, partial: Partial<BookDraft>): Promise<number> {
+export function update(
+  id: number,
+  partial: Partial<BookDraft>,
+): Promise<number> {
   console.log('[db] Update Book')
   return db('books').where({ id }).update(partial)
 }
@@ -25,5 +27,4 @@ export function update(id: number, partial: Partial<BookDraft>): Promise<number>
 export function deleteById(id: number): Promise<number> {
   console.log('[db] Delete Book')
   return db('books').where({ id }).delete()
-  
 }

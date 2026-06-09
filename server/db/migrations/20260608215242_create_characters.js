@@ -8,7 +8,7 @@ export async function up(knex) {
     table.string('read_status').nullable()
     table.string('cover_image').nullable()
     table.string('notes').nullable()
-    })
+  })
 }
 
 export async function down(knex) {

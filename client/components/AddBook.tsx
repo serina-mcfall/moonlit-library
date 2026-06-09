@@ -33,7 +33,11 @@ function AddBook() {
         initialValues={emptyBook}
         onSubmit={(values) => mutation.mutate(values)}
         isPending={mutation.isPending}
-        errorMessage={mutation.error ? `Failed to add: ${String(mutation.error)}` : undefined}
+        errorMessage={
+          mutation.error
+            ? `Failed to add: ${String(mutation.error)}`
+            : undefined
+        }
         submitLabel="Add to library"
         pendingLabel="Adding…"
       />

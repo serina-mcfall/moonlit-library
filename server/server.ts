@@ -1,4 +1,4 @@
-import * as Path from 'node:path' 
+import * as Path from 'node:path'
 import booksRoutes from './routes/books.ts'
 
 import express from 'express'
