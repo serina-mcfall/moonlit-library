@@ -21,3 +21,6 @@ promptkit
 
 # Claude Code session state
 .claude/
+
+# Superpowers brainstorm sessions (visual companion mockups)
+.superpowers/
