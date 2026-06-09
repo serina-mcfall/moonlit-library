@@ -8,3 +8,5 @@ export interface Book {
   cover_image: string | null
   notes: string | null
 }
+
+export type BookDraft = Omit<Book, 'id'>
