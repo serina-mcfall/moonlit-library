@@ -10,8 +10,9 @@ const queryClient = new QueryClient()
 document.addEventListener('DOMContentLoaded', () => {
   createRoot(document.getElementById('app') as HTMLElement).render(
     <QueryClientProvider client={queryClient}>
-      <App />
-      <BrowserRouter/>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
       <ReactQueryDevtools />
     </QueryClientProvider>,
   )

@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router'
-import BooksList from "./BooksList"
-import AddBook from "./AddBook"
+import BooksList from './BooksList'
+import AddBook from './AddBook'
 
 function App() {
   return (
@@ -10,13 +10,12 @@ function App() {
       </header>
       <main className="main">
         <Routes>
-          <Route path='/' element={<BooksList/>}/>
-          <Route path='/books/new' element={<AddBook/>}/>
-       </Routes>
+          <Route path="/" element={<BooksList />} />
+          <Route path="/books/new" element={<AddBook />} />
+        </Routes>
       </main>
     </>
   )
 }
-
 
 export default App
