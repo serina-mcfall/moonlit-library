@@ -23,8 +23,17 @@ function BookDetail() {
       <p>
         <Link to="/">← Back to library</Link>
       </p>
+      <p>
+        <Link to={`/books/${bookId}/edit`}>Edit Book</Link>
+      </p>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '120px 1fr', gap: '24px' }}>
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: '120px 1fr',
+          gap: '24px',
+        }}
+      >
         {data.cover_image ? (
           <img
             src={data.cover_image}
@@ -32,7 +41,8 @@ function BookDetail() {
             style={{
               width: '120px',
               borderRadius: '3px',
-              boxShadow: '0 0 22px rgba(245, 168, 192, 0.35), 0 6px 14px rgba(0, 0, 0, 0.5)',
+              boxShadow:
+                '0 0 22px rgba(245, 168, 192, 0.35), 0 6px 14px rgba(0, 0, 0, 0.5)',
               border: '1px solid var(--border-gold)',
             }}
           />
@@ -41,7 +51,8 @@ function BookDetail() {
             style={{
               width: '120px',
               aspectRatio: '2 / 3',
-              background: 'linear-gradient(135deg, var(--bg-raised), var(--bg-mid))',
+              background:
+                'linear-gradient(135deg, var(--bg-raised), var(--bg-mid))',
               borderRadius: '3px',
               border: '1px solid var(--border-gold)',
             }}
@@ -67,12 +78,20 @@ function BookDetail() {
             {data.title}
           </h1>
           {data.author && (
-            <p style={{ color: 'var(--gold)', margin: '0 0 16px' }}>by {data.author}</p>
+            <p style={{ color: 'var(--gold)', margin: '0 0 16px' }}>
+              by {data.author}
+            </p>
           )}
 
           <ManaBar status={data.read_status} size="detail" />
           {data.read_status && (
-            <p style={{ fontSize: '13px', color: 'var(--text-muted)', marginTop: '6px' }}>
+            <p
+              style={{
+                fontSize: '13px',
+                color: 'var(--text-muted)',
+                marginTop: '6px',
+              }}
+            >
               {data.read_status}
             </p>
           )}
@@ -80,7 +99,13 @@ function BookDetail() {
       </div>
 
       {data.notes && (
-        <section style={{ marginTop: '24px', paddingTop: '16px', borderTop: '1px solid var(--border-gold)' }}>
+        <section
+          style={{
+            marginTop: '24px',
+            paddingTop: '16px',
+            borderTop: '1px solid var(--border-gold)',
+          }}
+        >
           <h2
             style={{
               fontSize: '11px',
