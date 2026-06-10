@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { distinct } from './distinct'
+import { distinct } from './distinct.ts'
 
 describe('distinct', () => {
   it('dedupes and sorts alphabetically', () => {
