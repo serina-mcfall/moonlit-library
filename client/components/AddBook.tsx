@@ -7,6 +7,7 @@ import { useState } from 'react'
 import { searchBooks } from '../apis/search'
 import SearchBar from './SearchBar'
 import { SearchResult } from '../../models/search'
+import { Link } from 'react-router'
 
 const emptyBook: BookDraft = {
   title: '',
@@ -49,13 +50,14 @@ function AddBook() {
       genre: null,
       read_status: null,
       cover_image: result.cover_image,
-      notes: null,
+      notes: result.description,
     })
     setResults([])
   }
 
   return (
     <>
+      <Link to="/">← Back to library</Link>
       <h2>Add a Book</h2>
       <SearchBar onSearch={handleSearch} />
       {results.length > 0 && (
