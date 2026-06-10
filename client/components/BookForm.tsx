@@ -1,5 +1,8 @@
 import { useState, type FormEvent } from 'react'
 import type { BookDraft } from '../../models/books'
+import { useQuery } from '@tanstack/react-query'
+import { fetchAllBooks } from '../apis/books'
+import { distinct } from '../lib/distinct'
 
 interface Props {
   initialValues: BookDraft
@@ -19,6 +22,15 @@ function BookForm({
   pendingLabel,
 }: Props) {
   const [form, setForm] = useState<BookDraft>(initialValues)
+
+  const { data: books = [] } = useQuery({
+    queryKey: ['books'],
+    queryFn: fetchAllBooks,
+  })
+
+  const authorSuggestions = distinct(books.map((book) => book.author))
+  const seriesSuggestions = distinct(books.map((book) => book.series))
+  const genreSuggestions = distinct(books.map((book) => book.genre))
 
   function handelSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -44,27 +56,46 @@ function BookForm({
         Author
         <input
           type="text"
+          list="author-suggestions"
           value={form.author ?? ''}
           onChange={(e) => setForm({ ...form, author: e.target.value || null })}
         />
       </label>
+      <datalist id="author-suggestions">
+        {authorSuggestions.map((value) => (
+          <option key={value} value={value} />
+        ))}
+      </datalist>
+
       <label>
         Series
         <input
           type="text"
+          list="series-suggestions"
           value={form.series ?? ''}
           onChange={(e) => setForm({ ...form, series: e.target.value || null })}
         />
       </label>
+      <datalist id="series-suggestions">
+        {seriesSuggestions.map((value) => (
+          <option key={value} value={value} />
+        ))}
+      </datalist>
 
       <label>
         Genre
         <input
           type="text"
+          list="genre-suggestions"
           value={form.genre ?? ''}
           onChange={(e) => setForm({ ...form, genre: e.target.value || null })}
         />
       </label>
+      <datalist id="genre-suggestions">
+        {genreSuggestions.map((value) => (
+          <option key={value} value={value} />
+        ))}
+      </datalist>
 
       <label>
         Read status
