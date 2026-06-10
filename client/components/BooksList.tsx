@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { fetchAllBooks } from '../apis/books'
+import { Link } from 'react-router'
 
 import BookCard from './BookCard'
 
@@ -14,16 +15,21 @@ function BooksList() {
   if (!data) return null
 
   return (
-    <div
-      style={{
-        display: 'grid',
-        gap: '16px',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
-      }}
-    >
-      {data.map((book) => (
-        <BookCard key={book.id} book={book} />
-      ))}
+    <div>
+      <Link to="/books/new">
+        <button type="button">+ Add a book</button>
+      </Link>
+      <div
+        style={{
+          display: 'grid',
+          gap: '16px',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
+        }}
+      >
+        {data.map((book) => (
+          <BookCard key={book.id} book={book} />
+        ))}
+      </div>
     </div>
   )
 }
