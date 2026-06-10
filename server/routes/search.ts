@@ -2,10 +2,15 @@ import { Router } from 'express'
 
 const router = Router()
 
-interface OpenLibraryDoc {
-  title: string
-  author_name?: string[]
-  cover_i?: number
+interface GoogleBooksVolume {
+  volumeInfo: {
+    title: string
+    authors?: string[]
+    description?: string
+    imageLinks?: {
+      thumbnail?: string
+    }
+  }
 }
 
 router.get('/', async (req, res) => {
@@ -16,20 +21,21 @@ router.get('/', async (req, res) => {
       return res.status(400).json({ error: 'Query parameter `q` is required' })
     }
     const url =
-      'https://openlibrary.org/search.json?' + new URLSearchParams({ q })
+      'https://www.googleapis.com/books/v1/volumes?' +
+      new URLSearchParams({ q, key: process.env.GOOGLE_BOOKS_API_KEY ?? '' })
     const response = await fetch(url)
     if (!response.ok) {
-      console.error('[route] Open Library API error', await response.text())
+      console.error('[route] Google Books API error', await response.text())
       return res.status(502).json({ error: 'Failed to fetch search results' })
     }
     const data = await response.json()
-    const results = data.docs.map((doc: OpenLibraryDoc) => ({
-      title: doc.title,
-      author: doc.author_name?.join(', ') ?? 'Unknown author',
-      cover_image: doc.cover_i
-        ? 'https://covers.openlibrary.org/b/id/' + doc.cover_i + '-M.jpg'
-        : null,
-    }))
+    const results =
+      data.items?.map((item: GoogleBooksVolume) => ({
+        title: item.volumeInfo.title,
+        author: item.volumeInfo.authors?.join(', ') ?? 'Unknown author',
+        cover_image: item.volumeInfo.imageLinks?.thumbnail ?? null,
+        description: item.volumeInfo.description ?? null,
+      })) ?? []
     res.json({ q, results })
   } catch (error) {
     console.error('[route] GET /api/v1/search', error)

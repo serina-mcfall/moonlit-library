@@ -31,6 +31,7 @@
   },
   "dependencies": {
     "@devacademy/eslint-config": "^1.10.2",
+    "dotenv": "^17.4.2",
     "express": "^4.22.1",
     "knex": "^2.5.1",
     "sqlite3": "^5.1.7",
