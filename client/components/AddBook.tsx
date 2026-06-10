@@ -17,6 +17,10 @@ const emptyBook: BookDraft = {
   read_status: null,
   cover_image: null,
   notes: null,
+  my_thoughts: null,
+  rating: null,
+  favorite_quote: null,
+  favorite_character: null,
 }
 
 function AddBook() {
@@ -51,6 +55,10 @@ function AddBook() {
       read_status: null,
       cover_image: result.cover_image,
       notes: result.description,
+      my_thoughts: null,
+      rating: null,
+      favorite_quote: null,
+      favorite_character: null,
     })
     setResults([])
   }
