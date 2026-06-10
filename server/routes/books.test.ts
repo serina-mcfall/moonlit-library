@@ -88,3 +88,47 @@ describe('DELETE /api/v1/books/:id', () => {
     expect(res.status).toBe(404)
   })
 })
+
+describe('PATCH /api/v1/books/:id (review fields)', () => {
+  it('persists all four review fields', async () => {
+    const res = await request(server).patch('/api/v1/books/1').send({
+      my_thoughts: 'A masterclass in moral weight.',
+      rating: 9,
+      favorite_quote: 'The price of power is silence.',
+      favorite_character: 'Rin',
+    })
+    expect(res.status).toBe(200)
+
+    const check = await request(server).get('/api/v1/books/1')
+    expect(check.body.my_thoughts).toBe('A masterclass in moral weight.')
+    expect(check.body.rating).toBe(9)
+    expect(check.body.favorite_quote).toBe('The price of power is silence.')
+    expect(check.body.favorite_character).toBe('Rin')
+  })
+
+  it('persists null when clearing a review field', async () => {
+    // First set a value
+    await request(server)
+      .patch('/api/v1/books/1')
+      .send({ my_thoughts: 'something' })
+    // Then clear it
+    const res = await request(server)
+      .patch('/api/v1/books/1')
+      .send({ my_thoughts: null })
+    expect(res.status).toBe(200)
+
+    const check = await request(server).get('/api/v1/books/1')
+    expect(check.body.my_thoughts).toBeNull()
+  })
+})
+
+describe('GET /api/v1/books/:id (review fields shape)', () => {
+  it('returns review fields as null on unreviewed books', async () => {
+    const res = await request(server).get('/api/v1/books/1')
+    expect(res.status).toBe(200)
+    expect(res.body).toHaveProperty('my_thoughts', null)
+    expect(res.body).toHaveProperty('rating', null)
+    expect(res.body).toHaveProperty('favorite_quote', null)
+    expect(res.body).toHaveProperty('favorite_character', null)
+  })
+})
