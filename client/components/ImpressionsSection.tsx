@@ -15,13 +15,7 @@ function ImpressionsSection({ book }: Props) {
 
   if (!hasAnyImpression) {
     return (
-      <section
-        style={{
-          marginTop: '24px',
-          paddingTop: '16px',
-          borderTop: '1px solid var(--border-gold)',
-        }}
-      >
+      <section className="divider-section">
         <p>
           <Link to={`/books/${book.id}/review`}>+ Write impressions</Link>
         </p>
@@ -30,87 +24,30 @@ function ImpressionsSection({ book }: Props) {
   }
 
   return (
-    <section
-      style={{
-        marginTop: '24px',
-        paddingTop: '16px',
-        borderTop: '1px solid var(--border-gold)',
-        background: 'rgba(245, 168, 192, 0.04)',
-        padding: '20px 16px',
-        borderRadius: '4px',
-      }}
-    >
-      <h2
-        style={{
-          fontSize: '11px',
-          color: 'var(--gold-warm)',
-          letterSpacing: '2px',
-          textTransform: 'uppercase',
-          margin: '0 0 12px',
-        }}
-      >
-        My Impressions
-      </h2>
+    <section className="impressions">
+      <h2 className="section-label">My Impressions</h2>
 
       {book.rating !== null && (
-        <div style={{ marginBottom: '16px' }}>
-          <div
-            style={{
-              fontSize: '11px',
-              color: 'var(--text-muted)',
-              marginBottom: '6px',
-            }}
-          >
-            Your rating
-          </div>
+        <div className="impressions-field">
+          <p className="impressions-field-label">Your rating</p>
           <MoonRating value={book.rating} />
         </div>
       )}
 
       {book.my_thoughts && (
-        <div style={{ marginBottom: '16px' }}>
-          <div
-            style={{
-              fontSize: '11px',
-              color: 'var(--text-muted)',
-              marginBottom: '6px',
-            }}
-          >
-            Your thoughts
-          </div>
+        <div className="impressions-field">
+          <p className="impressions-field-label">Your thoughts</p>
           <p style={{ fontStyle: 'italic', margin: 0 }}>{book.my_thoughts}</p>
         </div>
       )}
 
       {book.favorite_quote && (
-        <div style={{ marginBottom: '12px' }}>
-          <div
-            style={{
-              fontSize: '11px',
-              color: 'var(--text-muted)',
-              marginBottom: '6px',
-            }}
-          >
-            Favourite line
-          </div>
-          <blockquote
-            style={{
-              margin: 0,
-              borderLeft: '2px solid var(--pink)',
-              paddingLeft: '12px',
-              fontStyle: 'italic',
-            }}
-          >
+        <div className="impressions-field">
+          <p className="impressions-field-label">Favourite line</p>
+          <blockquote className="impressions-quote">
             &ldquo;{book.favorite_quote}&rdquo;
             {book.favorite_character && (
-              <span
-                style={{
-                  display: 'block',
-                  marginTop: '4px',
-                  color: 'var(--gold)',
-                  fontStyle: 'normal',
-                }}
-              >
+              <span className="impressions-quote-attribution">
                 — {book.favorite_character}
               </span>
             )}
@@ -119,23 +56,15 @@ function ImpressionsSection({ book }: Props) {
       )}
 
       {book.favorite_character && !book.favorite_quote && (
-        <div style={{ marginBottom: '12px' }}>
-          <div
-            style={{
-              fontSize: '11px',
-              color: 'var(--text-muted)',
-              marginBottom: '6px',
-            }}
-          >
-            Favourite character
-          </div>
+        <div className="impressions-field">
+          <p className="impressions-field-label">Favourite character</p>
           <p style={{ color: 'var(--gold)', margin: 0 }}>
             {book.favorite_character}
           </p>
         </div>
       )}
 
-      <p style={{ marginTop: '16px', marginBottom: 0 }}>
+      <p className="impressions-edit">
         <Link to={`/books/${book.id}/review`}>Edit impressions</Link>
       </p>
     </section>

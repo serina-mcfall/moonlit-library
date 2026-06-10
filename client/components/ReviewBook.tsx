@@ -120,11 +120,13 @@ function ReviewBook() {
   if (!data) return null
 
   return (
-    <>
-      <p>
-        <Link to={`/books/${bookId}`}>← Back to {data.title}</Link>
-      </p>
-      <h2 tabIndex={-1}>My Impressions of {data.title}</h2>
+    <div className="form-page">
+      <Link to={`/books/${bookId}`} className="page-back-link">
+        ← Back to {data.title}
+      </Link>
+      <h2 className="page-heading" tabIndex={-1}>
+        My Impressions of {data.title}
+      </h2>
       <ReviewForm
         book={data}
         onSubmit={(values) => mutation.mutate(values)}
@@ -135,7 +137,7 @@ function ReviewBook() {
             : undefined
         }
       />
-    </>
+    </div>
   )
 }
 

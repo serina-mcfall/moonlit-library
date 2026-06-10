@@ -64,21 +64,25 @@ function AddBook() {
   }
 
   return (
-    <>
-      <Link to="/">← Back to library</Link>
-      <h2>Add a Book</h2>
-      <SearchBar onSearch={handleSearch} />
-      {results.length > 0 && (
-        <ul>
-          {results.map((result) => (
-            <li key={result.title + result.author}>
-              <button type="button" onClick={() => handleSelect(result)}>
-                {result.title} by {result.author}
-              </button>
-            </li>
-          ))}
-        </ul>
-      )}
+    <div className="form-page">
+      <Link to="/" className="page-back-link">
+        ← Back to library
+      </Link>
+      <h2 className="page-heading">Add a Book</h2>
+      <div className="search-block">
+        <SearchBar onSearch={handleSearch} />
+        {results.length > 0 && (
+          <ul className="search-results">
+            {results.map((result) => (
+              <li key={result.title + result.author}>
+                <button type="button" onClick={() => handleSelect(result)}>
+                  {result.title} by {result.author}
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
       <BookForm
         key={selected.title}
         initialValues={selected}
@@ -92,7 +96,7 @@ function AddBook() {
         submitLabel="Add to library"
         pendingLabel="Adding…"
       />
-    </>
+    </div>
   )
 }
 

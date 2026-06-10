@@ -40,108 +40,53 @@ function BookDetail() {
 
   return (
     <article>
-      <p>
-        <Link to="/">← Back to library</Link>
-      </p>
-      <p>
-        <Link to={`/books/${bookId}/edit`}>Edit Book</Link>
-      </p>
+      <Link to="/" className="page-back-link">
+        ← Back to library
+      </Link>
 
-      <button onClick={handleDelete}>Delete Book</button>
-
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: '120px 1fr',
-          gap: '24px',
-        }}
-      >
+      <div className="detail-grid">
         {data.cover_image ? (
           <img
             src={data.cover_image}
             alt={`Cover of ${data.title}`}
-            style={{
-              width: '120px',
-              borderRadius: '3px',
-              boxShadow:
-                '0 0 22px rgba(245, 168, 192, 0.35), 0 6px 14px rgba(0, 0, 0, 0.5)',
-              border: '1px solid var(--border-gold)',
-            }}
+            className="detail-cover"
           />
         ) : (
-          <div
-            style={{
-              width: '120px',
-              aspectRatio: '2 / 3',
-              background:
-                'linear-gradient(135deg, var(--bg-raised), var(--bg-mid))',
-              borderRadius: '3px',
-              border: '1px solid var(--border-gold)',
-            }}
-          />
+          <div className="detail-cover-placeholder" />
         )}
 
         <div>
           {(data.genre || data.series) && (
-            <p
-              style={{
-                fontSize: '11px',
-                color: 'var(--gold-warm)',
-                letterSpacing: '2px',
-                textTransform: 'uppercase',
-                margin: 0,
-                fontFamily: 'var(--font-display)',
-              }}
-            >
+            <p className="detail-meta-label">
               {[data.genre, data.series].filter(Boolean).join(' · ')}
             </p>
           )}
-          <h1 tabIndex={-1} style={{ marginTop: '6px' }}>
+          <h1 className="detail-title" tabIndex={-1}>
             {data.title}
           </h1>
-          {data.author && (
-            <p style={{ color: 'var(--gold)', margin: '0 0 16px' }}>
-              by {data.author}
-            </p>
-          )}
+          {data.author && <p className="detail-author">by {data.author}</p>}
 
           <ManaBar status={data.read_status} size="detail" />
           {data.read_status && (
-            <p
-              style={{
-                fontSize: '13px',
-                color: 'var(--text-muted)',
-                marginTop: '6px',
-              }}
-            >
-              {data.read_status}
-            </p>
+            <p className="detail-status">{data.read_status}</p>
           )}
         </div>
       </div>
 
       {data.notes && (
-        <section
-          style={{
-            marginTop: '24px',
-            paddingTop: '16px',
-            borderTop: '1px solid var(--border-gold)',
-          }}
-        >
-          <h2
-            style={{
-              fontSize: '11px',
-              color: 'var(--gold-warm)',
-              letterSpacing: '2px',
-              textTransform: 'uppercase',
-            }}
-          >
-            Notes
-          </h2>
+        <section className="divider-section">
+          <h2 className="section-label">Notes</h2>
           <p>{data.notes}</p>
         </section>
       )}
       <ImpressionsSection book={data} />
+
+      <div className="action-bar">
+        <Link to={`/books/${bookId}/edit`} className="button-link">
+          Edit Book
+        </Link>
+        <button onClick={handleDelete}>Delete Book</button>
+      </div>
     </article>
   )
 }

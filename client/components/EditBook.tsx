@@ -1,5 +1,5 @@
 import { useQuery, useQueryClient, useMutation } from '@tanstack/react-query'
-import { useNavigate, useParams } from 'react-router'
+import { Link, useNavigate, useParams } from 'react-router'
 import { fetchOne, updateBook } from '../apis/books'
 import type { BookDraft } from '../../models/books'
 import BookForm from './BookForm'
@@ -29,8 +29,11 @@ function EditBook() {
   if (!data) return null
 
   return (
-    <>
-      <h2>Edit Book</h2>
+    <div className="form-page">
+      <Link to={`/books/${bookId}`} className="page-back-link">
+        ← Back to {data.title}
+      </Link>
+      <h2 className="page-heading">Edit Book</h2>
       <BookForm
         initialValues={data}
         onSubmit={(values) => mutation.mutate(values)}
@@ -43,7 +46,7 @@ function EditBook() {
         submitLabel="Update Book"
         pendingLabel="Updating…"
       />
-    </>
+    </div>
   )
 }
 
