@@ -2,6 +2,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { Link, useNavigate, useParams } from 'react-router'
 import { deleteBook, fetchOne } from '../apis/books'
 import ManaBar from './ManaBar'
+import ImpressionsSection from './ImpressionsSection'
 
 function BookDetail() {
   const queryClient = useQueryClient()
@@ -140,6 +141,7 @@ function BookDetail() {
           <p>{data.notes}</p>
         </section>
       )}
+      <ImpressionsSection book={data} />
     </article>
   )
 }
