@@ -20,6 +20,7 @@ const emptyBook: BookDraft = {
 
 function AddBook() {
   const [results, setResults] = useState<SearchResult[]>([])
+  const [selected, setSelected] = useState<BookDraft>(emptyBook)
   const queryClient = useQueryClient()
   const navigate = useNavigate()
 
@@ -40,6 +41,19 @@ function AddBook() {
     }
   }
 
+  function handleSelect(result: SearchResult) {
+    setSelected({
+      title: result.title,
+      author: result.author,
+      series: null,
+      genre: null,
+      read_status: null,
+      cover_image: result.cover_image,
+      notes: null,
+    })
+    setResults([])
+  }
+
   return (
     <>
       <h2>Add a Book</h2>
@@ -48,13 +62,16 @@ function AddBook() {
         <ul>
           {results.map((result) => (
             <li key={result.title + result.author}>
-              {result.title} by {result.author}
+              <button type="button" onClick={() => handleSelect(result)}>
+                {result.title} by {result.author}
+              </button>
             </li>
           ))}
         </ul>
       )}
       <BookForm
-        initialValues={emptyBook}
+        key={selected.title}
+        initialValues={selected}
         onSubmit={(values) => mutation.mutate(values)}
         isPending={mutation.isPending}
         errorMessage={
