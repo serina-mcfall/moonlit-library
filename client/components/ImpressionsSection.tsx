@@ -101,7 +101,7 @@ function ImpressionsSection({ book }: Props) {
               fontStyle: 'italic',
             }}
           >
-            "{book.favorite_quote}"
+            &ldquo;{book.favorite_quote}&rdquo;
             {book.favorite_character && (
               <span
                 style={{

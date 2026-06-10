@@ -36,15 +36,13 @@ function ReviewForm({ book, onSubmit, isPending, errorMessage }: FormProps) {
     <form onSubmit={handleSubmit}>
       {errorMessage && <p role="alert">{errorMessage}</p>}
 
-      <label style={{ display: 'block', marginBottom: '20px' }}>
-        <span style={{ display: 'block', marginBottom: '8px' }}>
-          Your rating
-        </span>
+      <div style={{ marginBottom: '20px' }}>
+        <div style={{ marginBottom: '8px' }}>Your rating</div>
         <MoonRating
           value={fields.rating}
           onChange={(rating) => setFields({ ...fields, rating })}
         />
-      </label>
+      </div>
 
       <label>
         Your thoughts
