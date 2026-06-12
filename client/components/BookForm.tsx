@@ -97,9 +97,10 @@ function BookForm({
         ))}
       </datalist>
 
-      <label>
+      <label htmlFor="read-status">
         Read status
         <select
+          id="read-status"
           value={form.read_status ?? ''}
           onChange={(e) =>
             setForm({ ...form, read_status: e.target.value || null })
@@ -125,9 +126,10 @@ function BookForm({
         />
       </label>
 
-      <label>
+      <label htmlFor="notes">
         Notes
         <textarea
+          id="notes"
           value={form.notes ?? ''}
           onChange={(e) => setForm({ ...form, notes: e.target.value || null })}
           rows={3}

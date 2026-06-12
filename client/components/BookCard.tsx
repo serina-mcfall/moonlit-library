@@ -19,7 +19,7 @@ function BookCard({ book }: Props) {
         ) : (
           <div className="book-card-cover-placeholder" />
         )}
-        <h3 className="book-card-title">{book.title}</h3>
+        <h2 className="book-card-title">{book.title}</h2>
         {book.author && <p className="book-card-author">by {book.author}</p>}
         <div className="book-card-mana">
           <ManaBar status={book.read_status} />
