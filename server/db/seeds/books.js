@@ -42,7 +42,7 @@ export const seed = async function (knex) {
       series: 'Drowned Empire',
       genre: 'Fantasy',
       read_status: 'not started',
-      cover_image: 'https://covers.openlibrary.org/b/id/13846083-M.jpg',
+      cover_image: '/bookCovers/daughter-of-the-drowned-empire.webp',
       notes: 'A thrilling adventure set in a world of water and mystery.',
     },
 
@@ -52,9 +52,41 @@ export const seed = async function (knex) {
       series: 'The Hurricane Wars',
       genre: 'Fantasy',
       read_status: 'not started',
-      cover_image: 'https://covers.openlibrary.org/b/id/15203526-M.jpg',
+      cover_image: '/bookCovers/hurricane-wars.webp',
       notes:
         'An exquisite fantasy brimming with unforgettable characters, sizzling enemies-to-lovers romance, and richly drawn worlds, The Hurricane Wars marks the breathtaking debut of an extraordinary new writer ',
+    },
+
+    {
+      title: 'Dark Star Burning, Ash Falls White',
+      author: 'Amelie Wen Zhao',
+      series: 'Song of the Last Kingdom',
+      genre: 'Fantasy',
+      read_status: 'not started',
+      cover_image: '/bookCovers/dark-star-burning.webp',
+      notes:
+        'The epic sequel to Song of Silver, Flame Like Night. A fast-paced, riveting YA fantasy inspired by the mythology and folklore of ancient China',
+    },
+
+    {
+      title: 'My Summer in Seoul',
+      author: 'Rachel Van Dyken',
+      series: 'null',
+      genre: 'Young Adult',
+      read_status: 'not started',
+      cover_image: '/bookCovers/my-summer-in-seoul.webp',
+      notes: 'Its not all K-dramas and happily ever afters.',
+    },
+
+    {
+      title: 'Song of Silver, Flame Like Night',
+      author: 'Amelie Wen Zhao',
+      series: 'Song of the Last Kingdom',
+      genre: 'Fantasy',
+      read_status: 'not started',
+      cover_image: '/bookCovers/song-of-silver.webp',
+      notes:
+        'In a fallen kingdom, one girl carries the key to discovering the secrets of her nation’s past—and unleashing the demons that sleep at its heart. An epic fantasy series inspired by the mythology and folklore of ancient China.',
     },
   ])
 }
