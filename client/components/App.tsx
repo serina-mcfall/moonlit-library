@@ -9,7 +9,7 @@ function App() {
   return (
     <>
       <header className="header">
-        <h1>Serinas Book Library</h1>
+        <h1>Moonlit Library</h1>
       </header>
       <main className="main">
         <Routes>
