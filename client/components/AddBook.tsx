@@ -25,6 +25,7 @@ const emptyBook: BookDraft = {
 
 function AddBook() {
   const [results, setResults] = useState<SearchResult[]>([])
+  const [feedback, setFeedback] = useState('')
   const [selected, setSelected] = useState<BookDraft>(emptyBook)
   const queryClient = useQueryClient()
   const navigate = useNavigate()
@@ -38,11 +39,21 @@ function AddBook() {
   })
 
   async function handleSearch(term: string) {
+    setResults([])
+    setFeedback(`Searching for "${term}"…`)
     try {
       const searchResults = await searchBooks(term)
       setResults(searchResults)
+      setFeedback(
+        searchResults.length === 0
+          ? `No results for "${term}". Try a different title, or fill the form manually.`
+          : `Found ${searchResults.length} result${searchResults.length === 1 ? '' : 's'} for "${term}". Select one to autofill the form, or keep typing manually.`,
+      )
     } catch (error) {
       console.error('Search failed:', error)
+      setFeedback(
+        `Search failed — please try again or fill the form manually.`,
+      )
     }
   }
 
@@ -61,6 +72,7 @@ function AddBook() {
       favorite_character: null,
     })
     setResults([])
+    setFeedback(`Form filled with "${result.title}". Adjust any fields below before adding.`)
   }
 
   return (
@@ -71,8 +83,13 @@ function AddBook() {
       <h2 className="page-heading">Add a Book</h2>
       <div className="search-block">
         <SearchBar onSearch={handleSearch} />
+        {feedback && (
+          <p role="status" aria-live="polite" className="search-feedback">
+            {feedback}
+          </p>
+        )}
         {results.length > 0 && (
-          <ul className="search-results">
+          <ul className="search-results" aria-label="Search results">
             {results.map((result) => (
               <li key={result.title + result.author}>
                 <button type="button" onClick={() => handleSelect(result)}>
