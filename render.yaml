@@ -1,0 +1,21 @@
+# Render deployment config for Moonlit Library.
+#
+# Strategy: option (a) — ephemeral SQLite + seed-on-startup.
+# The container runs migrations and seeds on every boot, so each
+# redeploy resets the demo library to the seeded state. Visitor
+# changes (added books, reviews) live only until the next deploy.
+# That's the honest demo behaviour for a personal book library.
+#
+# NODE_ENV is intentionally set in startCommand, not as an envVar,
+# so that `npm install` during the build phase still installs
+# devDependencies (vite, @vitejs/plugin-react etc. are needed for
+# `vite build` to succeed).
+
+services:
+  - type: web
+    name: moonlit-library
+    runtime: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: NODE_ENV=production npm start
+    autoDeploy: true

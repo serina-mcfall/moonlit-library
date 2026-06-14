@@ -6,6 +6,12 @@ A personal book library — built as a Dev Academy fullstack challenge, polished
 
 Feature-complete against the original challenge brief. Currently being polished for public showcase as part of [vixenz.dev](https://vixenz.dev) — a11y sweep and case study in progress.
 
+## Live demo
+
+Deployed on Render — see [`render.yaml`](./render.yaml) for the config.
+
+> **Demo behaviour:** the deployed instance uses ephemeral SQLite that re-seeds on every redeploy. Visitors can add/edit books and write reviews, but those changes only live until the next push. The repo is the full app — clone it to keep your own books.
+
 ## What it does
 
 A small fullstack app to keep, review, and reflect on books I'm reading:
