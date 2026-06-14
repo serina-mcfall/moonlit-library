@@ -32,14 +32,14 @@ function BookForm({
   const seriesSuggestions = distinct(books.map((book) => book.series))
   const genreSuggestions = distinct(books.map((book) => book.genre))
 
-  function handelSubmit(event: FormEvent<HTMLFormElement>) {
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     if (!form.title.trim()) return
     onSubmit(form)
   }
 
   return (
-    <form onSubmit={handelSubmit}>
+    <form onSubmit={handleSubmit}>
       {errorMessage && <p role="alert">{errorMessage}</p>}
 
       <label>
