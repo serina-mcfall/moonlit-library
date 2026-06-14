@@ -1,9 +1,9 @@
 {
-  "name": "my-fullstack-collection",
+  "name": "moonlit-library",
   "type": "module",
   "version": "0.1.0",
-  "description": "Build a fullstack collection app",
-  "repository": "https://https://github.com/dev-academy-challenges/my-fullstack-collection",
+  "description": "A personal book library — a Dev Academy fullstack challenge, built with care, accessibility, and a Moonlit aesthetic",
+  "repository": "https://github.com/serina-mcfall/moonlit-library",
   "main": "server/index.ts",
   "scripts": {
     "start": "node dist/server.js",
@@ -19,9 +19,13 @@
     "format": "prettier -w '**/*.{js,jsx,ts,tsx}'"
   },
   "keywords": [
-    "fullstack"
+    "fullstack",
+    "react",
+    "typescript",
+    "accessibility",
+    "books"
   ],
-  "author": "Dev Academy Aotearoa",
+  "author": "Serina Mcfall",
   "license": "ISC",
   "eslintConfig": {
     "extends": "@devacademy/eslint-config/react",

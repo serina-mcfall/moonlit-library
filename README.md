@@ -1,104 +1,70 @@
-# Fullstack Collection App
+# Moonlit Library
 
-This repo is designed to provide space to code a fullstack app. It contains node modules and folders for databases, routes, API requests and React components that'll use React Query. Let's get going!
+A personal book library — built as a Dev Academy fullstack challenge, polished as a portfolio piece, designed for the way I actually read.
 
-## Setup
+## Status
 
-### 0. Cloning and installation
+Feature-complete against the original challenge brief. Currently being polished for public showcase as part of [vixenz.dev](https://vixenz.dev) — a11y sweep and case study in progress.
 
-- [ ] Clone this repo, navigate to it, install packages, and start the server with `npm run dev`
-  <details style="padding-left: 2em">
-    <summary>Tip</summary>
+## What it does
 
-    You may also want to start a new branch
-    ```sh
-    cd my-fullstack-collection
-    npm i
-    git checkout -b <branchname>
-    npm run dev
-    ```
-  </details>
+A small fullstack app to keep, review, and reflect on books I'm reading:
 
-<details>
-  <summary>More about using <code>npm</code> vs <code>npx</code></summary>
+- Browse a personal collection
+- Add books with title, author, series, genre, and read status
+- Edit and delete entries
+- Review with **MoonRating** — a custom moon-themed rating component (because stars are overdone)
+- Capture longer thoughts in an **Impressions** section (because ratings alone don't say much)
+- Search across the collection
+- Existing-value suggestions for author/series/genre via native HTML `datalist`
+- Locally-hosted WebP covers — the library works offline
 
-  - When running knex, run `npm run knex <command>`, e.g. `npm run knex migrate:latest` rather than using `npx`
-</details>
+## Why it looks the way it does
 
----
+- **Dark palette by default.** Deep blues, warm gold accents, parchment-tinted text. Easier on dyslexic and migraine-prone eyes; easier on most others too.
+- **Cinzel for display, Andika for body.** Andika is a literacy-themed typeface designed for dyslexic readers. Thematically right for a *book* library; practically right for me.
+- **`prefers-reduced-motion` respected** wherever animation is used.
+- **Accessibility caught while building**, not retrofitted — see the `Fix orphaned form labels and skipped heading level` commit for the receipts.
 
-## Requirements
+## Engineering notes
 
-### 1. Choosing your data set
+Process artefacts live in `docs/superpowers/`:
 
-- [ ] First, decide what you would like to keep a collection of. This could be a repo for keeping track of movies, books, gifs, cars, rocks, anything you fancy, but keep it simple!
-  <details style="padding-left: 2em">
-    <summary>More about your collection</summary>
+- `specs/` — design specs written before features are built
+- `plans/` — implementation plans linking spec → code
+- `handoffs/` — checkpoints between work sessions
 
-    **Note:** the aim is to have some simple data. If you think you might need more than one database table, or have lots of details you want to store, how could you simplify the information you're keeping track of? Leave more complex data until later in the project. For example, I want to keep track of books that I want to read, ones that I have read, and ones that I own. To start with though, let's keep track of the books themselves. My data might look like:
+The `moonRating` helper was built test-first — see `Add failing tests for moonRating helper` followed by `Implement moonRating helper` in `git log`.
 
-    |id|title|author|
-    |---|---|---|
-    | 1 | Ready Player One | Ernest Cline |
-    | 2 | Throwing Rocks at the Google Bus | Douglas Rushkoff |
+## Tech stack
 
-Our first job is getting something showing on the front end from our database. Here's a list of steps in case they are useful. You can build in any order you like though ;)
+- **Client:** Vite, React 18, TypeScript, React Router, TanStack Query
+- **Server:** Express, Knex, SQLite (better-sqlite3)
+- **Tests:** Vitest, supertest
+- **Typography:** Cinzel + Andika (loaded via Google Fonts)
+- **Tooling:** ESLint, Prettier
 
-## Back end
+## Getting started
 
-### 2. Building the database
+```sh
+npm install
+npm run knex migrate:latest
+npm run knex seed:run
+npm run dev
+```
 
-- [ ] Design a database to store a list of your things (e.g. books)
-- [ ] Build the migrations and seed data
+Then open the URL Vite prints (defaults to `http://localhost:5173`).
 
-### 3. Building the API
-- [ ] Build an API (back end route) to get the information from your database
-- [ ] Test your API with Postman
+Run the tests with `npm test`, lint with `npm run lint`, format with `npm run format`.
 
-## Front end
+## Origin + lineage
 
-### 4. Setting the stage
-- [ ] Build a React component with static html
+This repo carries its full git history from the Dev Academy fullstack-collection brief — the original `Sporked` commit is preserved as the first commit. The bootcamp shell stays in `~/Dev-Academy/my-fullstack-collection/` on the local machine as the original record; this repo is the *journey* from "brief filled in" to "portfolio piece."
 
-### 5. Building the API client
-- [ ] Build an API client in the front end to request the information from your routes
+## Case study
 
-### 6. Querying Data 
-- [ ] Write a query with the `useQuery` hook to fetch the collection data from the API
-- [ ] Display the collection data you queried in a component (you may want to create a new component for this)
-
-### 7. Create Data
-- [ ] (Optional) Create a new component for your new collection item form
-- [ ] Mutate data with the `useMutation` hook to create a new collection item via the API 
-
-### 8. Delete Data
-- [ ] Mutate data with the `useMutation` hook to delete an exisiting collection item via the API (you may want to add this to your collection display component)
-
-### 9. Update Data
-- [ ] (Optional) Create a new component for your update collection item form
-- [ ] Mutate data with the `useMutation` hook to update an exisiting collection item via the API 
+The case study lives at [vixenz.dev/work/moonlit-library](https://vixenz.dev/work/moonlit-library) — covers the design choices, the a11y arc, and what I'd build next.
 
 ---
 
-## Stretch
-
-<details>
-  <summary>More about stretch challenges</summary>
-  
-  - Forms can be tough to build accessibly. First ensure all parts of your form can be reached and used with keyboard-only navigation. Then test your form page with the WAVE browser extension, and fix any accessibility issues it detects
-  - Is there any complex data you chose to not include earlier or any way you could expand this dataset?
-    - You might have some other information (e.g. unread books vs. read books) that should be included in your database design, and this may require adjusting your database design
-  - Could you add an external API (maybe an inspirational quote in the footer?)
-  - If you haven't already, CSS!
-</details>
-
----
-
-## Submitting this Challenge for Marking
-This challenge can be used for the following trello assessments:
-
-- **WD03** - Forms
-- **WD04** - Fullstack (**Note** - you will need to deploy this challenge to Render to pass this trello assessment.)
-
----
-[Provide feedback on this repo](https://docs.google.com/forms/d/e/1FAIpQLSfw4FGdWkLwMLlUaNQ8FtP2CTJdGDUv6Xoxrh19zIrJSkvT4Q/viewform?usp=pp_url&entry.1958421517=my-fullstack-collection)
+Built by **Serina Mcfall** — [vixenz.dev](https://vixenz.dev) · [github.com/serina-mcfall](https://github.com/serina-mcfall)
